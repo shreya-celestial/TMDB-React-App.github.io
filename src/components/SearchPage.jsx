@@ -29,10 +29,12 @@ const SearchPage = () => {
 
     const handleChange = (e, value) => {
         console.log('changed to ' + value)
-        setPage(value);
-        setTempMsg('Loading...')
-        setData(null);
-        getData(value);
+        if (value !== page) {
+            setPage(value);
+            setTempMsg('Loading...')
+            setData(null);
+            getData(value);
+        }
     }
 
     const handleClick = (id) => {

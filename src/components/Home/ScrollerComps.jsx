@@ -34,7 +34,6 @@ const popularButtons = [
 ]
 
 const ScrollerComps = ({ compFor }) => {
-    const [active, setActive] = useState('');
     const [customButtons, setCustomButtons] = useState([]);
     const [data, setData] = useState(null);
     const [tempMessage, setTempMessage] = useState('Loading...');
@@ -46,11 +45,9 @@ const ScrollerComps = ({ compFor }) => {
         if (compFor === 'Trending') {
             setCustomButtons(trendingButtons);
             setTargetKey(trendingButtons[0].key);
-            setActive(trendingButtons[0].key);
             getData(trendingButtons[0].url);
         }
         else {
-            setActive(popularButtons[0].key);
             setCustomButtons(popularButtons);
             getData(popularButtons[0].url)
             setTargetKey(popularButtons[0].key)
@@ -68,7 +65,6 @@ const ScrollerComps = ({ compFor }) => {
 
     const handleClick = (key, url) => {
         if (targetKey !== key) {
-            setActive(key)
             setTempMessage('Loading...')
             setData(null);
             setTargetKey(key)
@@ -94,7 +90,7 @@ const ScrollerComps = ({ compFor }) => {
                 <h2>Trending</h2>
                 <div className={styles.buttons}>
                     {customButtons.map((currentButton) => (
-                        <button key={currentButton.key} onClick={() => handleClick(currentButton.key, currentButton.url)} className={active === currentButton.key ? styles.selected : ''}><h4>{currentButton.name}</h4></button>
+                        <button key={currentButton.key} onClick={() => handleClick(currentButton.key, currentButton.url)} className={targetKey === currentButton.key ? styles.selected : ''}><h4>{currentButton.name}</h4></button>
                     ))}
                 </div>
             </div>
