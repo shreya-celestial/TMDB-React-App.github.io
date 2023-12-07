@@ -1,0 +1,52 @@
+.bg {
+    min-height: 80vh;
+    background-position: left calc((50vw - 170px) - 320px) top;
+    color: rgb(255, 255, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgOverlay {
+    min-height: 88.9vh;
+    background-image: linear-gradient(to right, rgba(31.5, 31.5, 31.5, 1) 30%, rgba(31.5, 31.5, 31.5, 0.9) 50%, rgba(31.5, 31.5, 31.5, 0.30) 100%);
+    display: flex;
+}
+
+.bgOverlay img {
+    width: 320px;
+    margin: 30px 50px;
+    border-radius: 10px;
+}
+
+.movieContents {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.movieContents span {
+    font-size: xxx-large;
+    margin-top: 100px;
+}
+
+.minorDetailsP {
+    margin: 0;
+}
+
+.wishlistMsg {
+    display: none;
+    position: absolute;
+    background: rgba(3,37,65,1);
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+.bgOverlay h4 {
+    margin: 0;
+}
+
+.movieOverview {
+    margin: 0;
+    margin-right: 50px;
+}

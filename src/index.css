@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Source Sans 3', sans-serif;
+}
+
+.pages {
+    margin-top: 60px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(232, 231, 231);
+    border-radius: 8px;
+}
+
+.notfound {
+    display: block;
+    width: 60%;
+    margin: 40vh auto 0;
+    text-align: center;
+}

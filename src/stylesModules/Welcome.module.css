@@ -1,0 +1,61 @@
+.welcomeBg {
+    min-height: 325px;
+    height: calc(100vh/2.3);
+    background-image: linear-gradient(to right,rgba(3,37,65,0.9) 0%, rgba(3,37,65,0.5) 100%), url('../assets/welcomeImage.jpg');
+    background-position: center;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcomeScreen {
+    margin-top: 10px;
+    width: 90%;
+}
+
+.welcomeScreen h1 {
+    font-size: xxx-large;
+    margin: 0;
+}
+
+.welcomeScreen h2 {
+    margin-top: 10px;
+    font-size: x-large;
+}
+
+.welcomeScreen form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 50px auto 0px;
+}
+
+.welcomeScreen form input {
+    position: relative;
+    width: 100%;
+    line-height: 30px;
+    font-size: 1.1em;
+    color: rgba(0,0,0,.5);
+    border: 0;
+    border-radius: 30px;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+}
+
+.welcomeScreen form button {
+    position: absolute;
+    align-self: center;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: medium;
+    line-height: 30px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: linear-gradient(to right,rgba(30,213,169,1) 0%,rgba(1,180,228,1) 100%);
+}
