@@ -52,8 +52,8 @@ const NavBar = () => {
                         <img src={logo} alt="logo" onClick={() => nav('/')} />
                         <Button onClick={handleClick} sx={{ color: 'white', marginLeft: '20px', textTransform: 'none', fontSize: 'medium' }}>Movies</Button>
                         <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                            <MenuItem onClick={handleClose}><Link to='/popular'>Popular</Link></MenuItem>
-                            <MenuItem onClick={handleClose}><Link to='/topRated'>Top Rated</Link></MenuItem>
+                            <Link to='/popular'><MenuItem onClick={handleClose}>Popular</MenuItem></Link>
+                            <Link to='/topRated'><MenuItem onClick={handleClose}>Top Rated</MenuItem></Link>
                         </Menu>
                     </div>
                     <div>

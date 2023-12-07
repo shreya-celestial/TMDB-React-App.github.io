@@ -75,7 +75,7 @@ const DetailPage = () => {
                         <img src={`https://image.tmdb.org/t/p/original${data.poster_path || data.profile_path}`} />
                         <div className={styles.movieContents}>
                             <span><b>{data.title || data.name}</b> {data.release_date || data.first_air_date ? `(${moment(data.release_date || data.first_air_date).format("YYYY")})` : ''}</span>
-                            <p className={styles.minorDetailsP}>{moment(data.release_date || data.first_air_date || data.birthday).format("DD/MM/YYYY")} &bull; {data.place_of_birth || data.genres} {!data.biography && `• ${data.runtime}`}</p>
+                            <p className={styles.minorDetailsP}>{moment(data.release_date || data.first_air_date || data.birthday).format("DD/MM/YYYY")} &bull; {data.place_of_birth || data.genres} {(data.runtime !== 'Unknown Runtime' && !data.biography) && `• ${data.runtime}`}</p>
                             {!data.biography && (
                                 <IconButton onMouseOver={handleHover} onMouseOut={handleStopHover} sx={{ width: 'fit-content', margin: '10px 0 0' }}>
                                     <AddCircleOutlineIcon sx={{ color: 'white', justifySelf: 'flex-start', fontSize: 40 }} />
