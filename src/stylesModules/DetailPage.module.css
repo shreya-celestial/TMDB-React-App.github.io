@@ -1,5 +1,5 @@
 .bg {
-    min-height: 80vh;
+    min-height: 90.5vh;
     background-position: left calc((50vw - 170px) - 320px) top;
     color: rgb(255, 255, 255);
     background-repeat: no-repeat;
@@ -7,13 +7,15 @@
 }
 
 .bgOverlay {
-    min-height: 88.9vh;
+    min-height: 90.5vh;
     background-image: linear-gradient(to right, rgba(31.5, 31.5, 31.5, 1) 30%, rgba(31.5, 31.5, 31.5, 0.9) 50%, rgba(31.5, 31.5, 31.5, 0.30) 100%);
     display: flex;
 }
 
 .bgOverlay img {
-    width: 320px;
+    min-width: 320px;
+    width: fit-content;
+    max-width: 340px;
     margin: 30px 50px;
     border-radius: 10px;
 }
@@ -49,4 +51,5 @@
 .movieOverview {
     margin: 0;
     margin-right: 50px;
+    margin-bottom: 50px;
 }

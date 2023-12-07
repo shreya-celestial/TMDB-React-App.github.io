@@ -25,7 +25,12 @@ export const getClickedItem = async (id, genre) => {
         }
     };
     const url = `https://api.themoviedb.org/3/${genre}/${id}?language=en-US`;
-    const response = await fetch(url, options);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        return data;
+    }
+    catch {
+        return null
+    }
 };
