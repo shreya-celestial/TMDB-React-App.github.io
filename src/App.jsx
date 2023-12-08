@@ -5,6 +5,7 @@ import Home from './components/Home';
 import NotFound from './components/NotFound';
 import DetailPage from './components/DetailPage';
 import SearchPage from './components/SearchPage';
+import Popular from './components/MoviesMenu/Popular';
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                     <Route exact path='/' element={<Home />} />
                     <Route exact path='/:genre/:id' element={<DetailPage />} />
                     <Route exact path='/search' element={<SearchPage />} />
+                    <Route exact path='/popular' element={<Popular />} />
                     <Route exact path='*' element={<NotFound />} />
                 </Routes>
             </div>

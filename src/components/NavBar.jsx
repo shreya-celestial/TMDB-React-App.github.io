@@ -18,10 +18,16 @@ const NavBar = () => {
     useEffect(() => {
         if (location.pathname === '/search') {
             setSearchIcon(true);
-            setSearchValue(query)
+            if (query)
+                setSearchValue(query)
+            else
+                setSearchValue('')
         }
         if (location.pathname === '/*') {
             setSearchIcon(false);
+            setSearchValue('')
+        }
+        if (location.pathname === '/') {
             setSearchValue('')
         }
     }, [location])

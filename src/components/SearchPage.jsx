@@ -15,16 +15,38 @@ const SearchPage = () => {
     const [data, setData] = useState(null);
     const [page, setPage] = useState(1);
 
-    const getData = async (page) => {
-        const searchVal = query.replaceAll(' ', '%20')
-        const data = await searchItem(searchVal, page);
-        if (data.results.length) {
-            setTempMsg(null);
-            setData(data);
+    useEffect(() => {
+        if (!query) {
+            setData(null);
+            setTempMsg('It looks like that you are looking for something. Please try searching that..')
+            return
         }
-        else
-            setTempMsg("No Matches Found!");
-        console.log(data);
+        if (query.includes('/')) {
+            nav('../*')
+        }
+        setTempMsg('Loading...')
+        setData(null);
+        getData(1)
+        setPage(1);
+
+    }, [query])
+
+    const getData = async (page) => {
+        if (query) {
+            const searchVal = query.replaceAll(' ', '%20')
+            const data = await searchItem(searchVal, page);
+            if (!data) {
+                setTempMsg('Error.. Please try again!');
+                setData(null);
+                return
+            }
+            if (data.results.length) {
+                setTempMsg(null);
+                setData(data);
+            }
+            else
+                setTempMsg("No Matches Found!");
+        }
     }
 
     const handleChange = (e, value) => {
@@ -40,18 +62,6 @@ const SearchPage = () => {
     const handleClick = (id) => {
         nav(`/movie/${id}`)
     }
-
-    useEffect(() => {
-
-        if (query.includes('/')) {
-            nav('../*')
-        }
-        setTempMsg('Loading...')
-        setData(null);
-        getData(1)
-        setPage(1);
-
-    }, [query])
 
     return (
         <>
