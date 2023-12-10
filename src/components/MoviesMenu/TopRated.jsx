@@ -4,8 +4,8 @@ import Contents from "./Contents";
 import useFetch from "../../hooks/useFetch";
 import { useState } from "react";
 
-const Popular = () => {
-    const [funcToSend, setFuncToSend] = useState('popularConts')
+const TopRated = () => {
+    const [funcToSend, setFuncToSend] = useState('topRatedConts')
     const [page, setPage] = useState(1);
     const [filters, setFilters] = useState({});
     const { dataToSend: data, isPending, tempMsg } = useFetch(funcToSend, page, filters);
@@ -30,7 +30,7 @@ const Popular = () => {
 
     return (
         <>
-            <h2 className={styles.heading}>Popular Movies</h2>
+            <h2 className={styles.heading}>Top Rated Movies</h2>
             <Filter handleFilters={handleFilters} />
             {data?.length ? <div className={styles.contentsDiv}>
                 {data.map((item, index) => (
@@ -44,4 +44,4 @@ const Popular = () => {
     );
 }
 
-export default Popular;
+export default TopRated;

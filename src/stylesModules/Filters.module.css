@@ -1,0 +1,105 @@
+.filtersDiv {
+    float: left;
+    width: 23%;
+    padding: 0 20px;
+}
+
+.extraPadding {
+    padding: 0 20px;
+}
+
+.border {
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.sortDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sortDDDiv {
+    border-top: 1px solid rgb(232, 231, 231);
+    padding: 20px;
+}
+
+.sortDDDiv p {
+    margin: 0;
+}
+
+.sortDDDiv select {
+    margin: 10px 0;
+    border-radius: 5px;
+    line-height: 1.5;
+    padding: 10px;
+    background: rgb(232, 231, 231);
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.sortDDDiv option {
+    background-color: white;
+}
+
+.allFiltersDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.allFiltersChildDivs {
+    border-top: 1px solid rgb(232, 231, 231);
+    padding: 20px;
+}
+
+.allFiltersChildDivs p {
+    margin-top: 0;
+}
+
+.allFiltersChildDivs h5 {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.genresDiv {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.genresDiv p {
+    padding: 3px 10px;
+    margin: auto 6px 10px 0;
+    border-radius: 30px;
+    border: 1px solid rgb(197, 197, 197);
+    cursor: pointer;
+}
+
+.selected {
+    background-color: rgb(1, 180, 228) !important;
+    border: 1px solid rgb(1, 180, 228) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.buttonSearch {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    font-size: medium;
+    background-color: rgba(1,180,228,1);
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 60px;
+}
+
+.buttonSearch:hover {
+    background-color: rgba(3,37,65,1);
+}

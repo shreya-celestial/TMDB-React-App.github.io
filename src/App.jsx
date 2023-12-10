@@ -6,6 +6,7 @@ import NotFound from './components/NotFound';
 import DetailPage from './components/DetailPage';
 import SearchPage from './components/SearchPage';
 import Popular from './components/MoviesMenu/Popular';
+import TopRated from './components/MoviesMenu/TopRated';
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                     <Route exact path='/:genre/:id' element={<DetailPage />} />
                     <Route exact path='/search' element={<SearchPage />} />
                     <Route exact path='/popular' element={<Popular />} />
+                    <Route exact path='/topRated' element={<TopRated />} />
                     <Route exact path='*' element={<NotFound />} />
                 </Routes>
             </div>

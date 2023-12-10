@@ -1,0 +1,16 @@
+.heading {
+    margin: 90px 20px 10px
+}
+
+.contentsDiv {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 25px;
+}
+
+.contentsDiv h2 {
+    display: block;
+    max-width: 50%;
+    width: fit-content;
+    margin: 20vh auto;
+}

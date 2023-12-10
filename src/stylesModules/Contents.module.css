@@ -1,0 +1,22 @@
+.contentDiv {
+    width: 190px;
+    cursor: pointer;
+    margin: 0px 10px 40px;
+}
+
+.contentDiv img {
+    border-radius: 10px;
+    min-height: 285px;
+    max-height: 285px;
+}
+
+.contentDiv h3 {
+    margin: 0;
+}
+
+.contentDiv h4 {
+    margin: 0;
+    font-size: medium;
+    font-weight: normal;
+    color: rgba(0,0,0,.6);
+}
