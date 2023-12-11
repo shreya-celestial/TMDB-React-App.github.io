@@ -1,12 +1,15 @@
 import styles from '../../stylesModules/Contents.module.css'
 import moment from 'moment';
+// import { useNavigate } from 'react-router-dom'
 
 const Contents = ({ data }) => {
+    // const nav = useNavigate();
 
     const imgSrc = `https://image.tmdb.org/t/p/original${data.poster_path}`
 
     const handleClick = () => {
         window.open(`/movie/${data.id}`)
+        // nav(`/movie/${data.id}`)
     }
 
     return (

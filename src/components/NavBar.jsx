@@ -1,9 +1,10 @@
 import logo from '../assets/logo.svg'
 import { Button, Menu, MenuItem, IconButton } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, createSearchParams, useNavigate, useLocation } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import styles from '../stylesModules/NavBar.module.css'
+import { UserContext } from '../store/userContext'
 
 const NavBar = () => {
     const nav = useNavigate();
@@ -14,6 +15,8 @@ const NavBar = () => {
     const [searchIcon, setSearchIcon] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    const { user } = useContext(UserContext);
 
     useEffect(() => {
         if (location.pathname === '/search') {
@@ -63,7 +66,8 @@ const NavBar = () => {
                         </Menu>
                     </div>
                     <div>
-                        <Link to='/login'>Login</Link>
+                        {!user && <Link to='/login'>Login</Link>}
+                        {user && <Link to='/user'>{user.username}</Link>}
                         <IconButton onClick={() => setSearchIcon(prev => !prev)}>
                             <SearchOutlinedIcon sx={{ color: 'white', ml: '20px' }} />
                         </IconButton>
