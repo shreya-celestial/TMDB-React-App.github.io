@@ -1,15 +1,17 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { getClickedItem } from '../api'
+import { getClickedItem, addToWatchlist } from '../api'
 import { useEffect, useState } from "react";
 import { IconButton } from '@mui/material';
 import styles from '../stylesModules/DetailPage.module.css'
 import moment from "moment";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const DetailPage = () => {
     const { genre, id } = useParams();
     const [data, setData] = useState(null);
     const [disp, setDis] = useState('none');
+    const [watchList, setWatchList] = useState(false);
     const nav = useNavigate();
 
     const getRunTime = (time) => {
@@ -62,6 +64,25 @@ const DetailPage = () => {
         }
     }
 
+    const handleClick = async () => {
+        if (sessionStorage.getItem('user')) {
+            const user = JSON.parse(sessionStorage.getItem('user'))
+            const body = {
+                media_type: genre,
+                media_id: id,
+                watchlist: true
+            }
+            const response = await addToWatchlist(body, user.id)
+            if (response?.success) {
+                setWatchList(true)
+            }
+            else {
+                setWatchList(false)
+                alert('Unable to add to watchlist... Please try again!')
+            }
+        }
+    }
+
     return (
         <>
             {!data && <div className="notfound">
@@ -77,8 +98,9 @@ const DetailPage = () => {
                             <span><b>{data.title || data.name}</b> {data.release_date || data.first_air_date ? `(${moment(data.release_date || data.first_air_date).format("YYYY")})` : ''}</span>
                             <p className={styles.minorDetailsP}>{moment(data.release_date || data.first_air_date || data.birthday).format("DD/MM/YYYY")} &bull; {data.place_of_birth || data.genres} {(data.runtime !== 'Unknown Runtime' && !data.biography) && `• ${data.runtime}`}</p>
                             {!data.biography && (
-                                <IconButton onMouseOver={handleHover} onMouseOut={handleStopHover} sx={{ width: 'fit-content', margin: '10px 0 0' }}>
-                                    <AddCircleOutlineIcon sx={{ color: 'white', justifySelf: 'flex-start', fontSize: 40 }} />
+                                <IconButton onClick={handleClick} onMouseOver={handleHover} onMouseOut={handleStopHover} sx={{ width: 'fit-content', margin: '10px 0 0' }} disabled={watchList}>
+                                    {!watchList && <AddCircleOutlineIcon sx={{ color: 'white', justifySelf: 'flex-start', fontSize: 40 }} />}
+                                    {watchList && <CheckCircleOutlineIcon sx={{ color: 'white', justifySelf: 'flex-start', fontSize: 40 }} />}
                                 </IconButton>
                             )}
                             <div className={styles.wishlistMsg} style={{ left: '480px', top: '286px', display: disp }}>Login to add this movie to your watchlist</div>
