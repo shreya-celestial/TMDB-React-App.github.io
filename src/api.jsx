@@ -194,7 +194,51 @@ export const getAccountId = async (session_id) => {
         }
     };
     const url = `https://api.themoviedb.org/3/account?api_key=a7827348b8ef98b74e29888944bae6ec&session_id=${session_id}`;
-    const response = await fetch(url, options);
-    const data = await response.json();
-    return data;
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        return data;
+    }
+    catch {
+        return null
+    }
+};
+
+export const getWatchlist = async (id, page, genre) => {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+        }
+    };
+    const url = `https://api.themoviedb.org/3/account/${id}/watchlist/${genre}?language=en-US&page=${page}&sort_by=created_at.asc`;
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        return data;
+    }
+    catch {
+        return null
+    }
+};
+
+export const addToWatchlist = async (body, accountId) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+        },
+        body: JSON.stringify(body)
+    };
+    const url = `https://api.themoviedb.org/3/account/${accountId}/watchlist`;
+    try {
+        const response = await fetch(url, options);
+        return response.json();
+    }
+    catch {
+        return null
+    }
 };
