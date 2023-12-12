@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from '../../stylesModules/User.module.css'
 import { IconButton } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { getWatchlist, addToWatchlist } from '../../api'
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment';
+import { UserContext } from '../../store/userContext'
 
 const User = () => {
-    const user = JSON.parse(sessionStorage.getItem('user'))
+    const { user } = useContext(UserContext)
     const [targetKey, setTargetKey] = useState('movies')
     const [tempMsg, setTempMsg] = useState('Loading...')
     const [data, setData] = useState(null)
