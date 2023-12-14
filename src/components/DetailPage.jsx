@@ -1,11 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { getClickedItem, addToWatchlist } from '../api'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { IconButton } from '@mui/material';
 import styles from '../stylesModules/DetailPage.module.css'
 import moment from "moment";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { UserContext } from '../store/userContext'
 
 const DetailPage = () => {
     const { genre, id } = useParams();
@@ -13,6 +14,7 @@ const DetailPage = () => {
     const [disp, setDis] = useState('none');
     const [watchList, setWatchList] = useState(false);
     const nav = useNavigate();
+    const { user: sessionUser } = useContext(UserContext)
 
     const getRunTime = (time) => {
         let runtime = `${Math.trunc(time / (60))}hrs`;
@@ -53,20 +55,20 @@ const DetailPage = () => {
     }, [])
 
     const handleHover = () => {
-        if (!sessionStorage.getItem('user')) {
+        if (!sessionUser) {
             setDis('block')
         }
     }
 
     const handleStopHover = () => {
-        if (!sessionStorage.getItem('user')) {
+        if (!sessionUser) {
             setDis('none')
         }
     }
 
     const handleClick = async () => {
-        if (sessionStorage.getItem('user')) {
-            const user = JSON.parse(sessionStorage.getItem('user'))
+        if (sessionUser) {
+            const user = sessionUser
             const body = {
                 media_type: genre,
                 media_id: id,

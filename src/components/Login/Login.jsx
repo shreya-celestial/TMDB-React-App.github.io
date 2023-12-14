@@ -8,7 +8,12 @@ import { UserContext } from '../../store/userContext'
 const Login = () => {
     const nav = useNavigate()
     const [requestToken, setRequestToken] = useState(null)
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+
+    useEffect(() => {
+        if (user)
+            nav('/user')
+    }, [user])
 
     const getToken = async () => {
         const response = await getRequestToken();

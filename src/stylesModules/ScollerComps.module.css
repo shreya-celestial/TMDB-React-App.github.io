@@ -58,12 +58,14 @@
     width: 150px;
     cursor: pointer;
     margin: 20px 10px;
+    max-width: 150px;
 }
 
 .contentDivs img {
     border-radius: 10px;
     min-height: 225px;
     max-height: 225px;
+    max-width: 150px;
 }
 
 .contentDivs h3 {

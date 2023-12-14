@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from './components/NavBar';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
 import DetailPage from './components/DetailPage';
@@ -10,6 +10,7 @@ import TopRated from './components/MoviesMenu/TopRated';
 import Login from './components/Login/Login';
 import { UserContext } from './store/userContext';
 import User from './components/Login/User';
+import RootLayout from './RootLayout';
 
 const App = () => {
     const [sessionUser, setSessionUser] = useState(sessionStorage.getItem('user'))
@@ -19,9 +20,24 @@ const App = () => {
         setUser: setSessionUser
     }
 
+    const router = createBrowserRouter([
+        {
+            path: '/', element: <RootLayout />, errorElement: <NotFound />, children: [
+                { index: true, element: <Home /> },
+                { path: ':genre/:id', element: <DetailPage /> },
+                { path: 'search', element: <SearchPage /> },
+                { path: 'popular', element: <Popular /> },
+                { path: 'topRated', element: <TopRated /> },
+                { path: 'login', element: <Login /> },
+                { path: 'user', element: <User /> }
+            ]
+        }
+    ])
+
     return (
         <UserContext.Provider value={user}>
-            <BrowserRouter>
+            <RouterProvider router={router} />
+            {/* <BrowserRouter>
                 <NavBar />
                 <div className="pages">
                     <Routes>
@@ -37,7 +53,7 @@ const App = () => {
                         <Route exact path='*' element={<NotFound />} />
                     </Routes>
                 </div>
-            </BrowserRouter>
+            </BrowserRouter> */}
         </UserContext.Provider>
     );
 }

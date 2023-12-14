@@ -16,6 +16,11 @@ const User = () => {
     const [isEnd, setIsEnd] = useState(1);
     const nav = useNavigate();
 
+    useEffect(() => {
+        if (!user)
+            nav('/login')
+    }, [user])
+
     const getWatchListData = async () => {
         const response = await getWatchlist(user.id, page, targetKey)
         if (response?.results) {
