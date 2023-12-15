@@ -21,8 +21,14 @@ const Login = () => {
             setRequestToken(response.request_token);
         }
         else {
+            // suman feedback 
+            // use material ui alert component to dislay message
+            // https://mui.com/material-ui/react-alert/
+            // that should be apply for all the project
             alert('Something went wrong... Please try again!')
             location.reload();
+            // suman feedback 
+            // please explain me why location.reload is needed
         }
     }
 
@@ -50,7 +56,8 @@ const Login = () => {
         alert('Authentication Failed! Re-enter your id and password.');
         location.reload()
     }
-
+    // suman feedback
+    // can you please make the below form with material UI components
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
             <h2>Login to your account</h2>

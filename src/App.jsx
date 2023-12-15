@@ -37,7 +37,9 @@ const App = () => {
     return (
         <UserContext.Provider value={user}>
             <RouterProvider router={router} />
-            {/* <BrowserRouter>
+            {
+            /* Rekove commente code */
+            /* <BrowserRouter>
                 <NavBar />
                 <div className="pages">
                     <Routes>

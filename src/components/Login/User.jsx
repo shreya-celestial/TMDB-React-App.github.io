@@ -7,6 +7,10 @@ import { useNavigate } from 'react-router-dom'
 import moment from 'moment';
 import { UserContext } from '../../store/userContext'
 
+// suman feedback
+// Display every message(eg, tempMsg kind of message) to the end user through material ui for  project, the
+// this shoudl be apply for all in the project
+
 const User = () => {
     const { user } = useContext(UserContext)
     const [targetKey, setTargetKey] = useState('movies')

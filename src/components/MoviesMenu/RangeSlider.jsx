@@ -1,7 +1,8 @@
 import { styled, alpha, Box } from '@mui/system';
 import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 import PropTypes from 'prop-types';
-
+// suman feedback
+// constant variable should be in capital form, like grey should be GREY
 const grey = {
   50: '#F3F6F9',
   100: '#E5EAF2',

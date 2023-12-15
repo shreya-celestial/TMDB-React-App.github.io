@@ -1,3 +1,7 @@
+// suman feedback
+// the below token is being hardcoded for each api in this file, it's should not be like that
+// decalare this is in constant variable and use that variable everywhere, I suggested this earlier also, Avoid to repeat the same mistake again
+// Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI
 export const getTrendingPopularContents = async (url) => {
     const options = {
         method: 'GET',

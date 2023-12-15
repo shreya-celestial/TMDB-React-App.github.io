@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import styles from '../../stylesModules/ScollerComps.module.css'
 import { getTrendingPopularContents } from '../../api';
 import moment from 'moment';
-
+// suman feedback, 
+// set your indenting with 2 spaces only
 const trendingButtons = [{
     name: 'Today',
     key: 'day',
@@ -78,10 +79,23 @@ const ScrollerComps = ({ compFor }) => {
         } else {
             if (targetKey === 'people') {
                 nav(`/person/${id}`)
-                return
+                return // suman feedback, this return needed
             }
             nav(`/${targetKey}/${id}`)
         }
+
+        // suman feedback
+        // this whole above block could be like this
+        // as much the code is flat(not nested) it's easy to read 
+
+        // if (compFor === 'Trending') {
+        //     nav(`/${data[index].media_type}/${id}`)
+        // } else if(targetKey === 'people') {
+        //     nav(`/person/${id}`)
+        //     return
+        // } else {
+        //     nav(`/${targetKey}/${id}`)
+        // }
     }
 
     return (
