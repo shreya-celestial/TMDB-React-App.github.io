@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import NavBar from './components/NavBar';
 import { BrowserRouter, Routes, Route, createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
 import DetailPage from './components/DetailPage';
-import SearchPage from './components/SearchPage';
-import Popular from './components/MoviesMenu/Popular';
-import TopRated from './components/MoviesMenu/TopRated';
-import Login from './components/Login/Login';
+// import SearchPage from './components/SearchPage';
+// import Popular from './components/MoviesMenu/Popular';
+// import TopRated from './components/MoviesMenu/TopRated';
+import Login, { loader as requestTokenLoader } from './components/Login/Login';
 import { UserContext } from './store/userContext';
 import User from './components/Login/User';
 import RootLayout from './RootLayout';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
+const SearchPage = lazy(() => import('./components/SearchPage'))
+const Popular = lazy(() => import('./components/MoviesMenu/Popular'))
+const TopRated = lazy(() => import('./components/MoviesMenu/TopRated'))
 
 const App = () => {
     const [sessionUser, setSessionUser] = useState(sessionStorage.getItem('user'))
@@ -26,10 +30,10 @@ const App = () => {
             path: '/', element: <RootLayout />, errorElement: <NotFound />, children: [
                 { index: true, element: <Home /> },
                 { path: ':genre/:id', element: <DetailPage /> },
-                { path: 'search', element: <SearchPage /> },
-                { path: 'popular', element: <Popular /> },
-                { path: 'topRated', element: <TopRated /> },
-                { path: 'login', element: <Login /> },
+                { path: 'search', element: <Suspense fallback={<h2 className='notfound'>Loading...</h2>}><SearchPage /></Suspense> },
+                { path: 'popular', element: <Suspense fallback={<h2 className='notfound'>Loading...</h2>}><Popular /></Suspense> },
+                { path: 'topRated', element: <Suspense fallback={<h2 className='notfound'>Loading...</h2>}><TopRated /></Suspense> },
+                { path: 'login', element: <Login />, loader: requestTokenLoader },
                 { path: 'user', element: <User /> }
             ]
         }

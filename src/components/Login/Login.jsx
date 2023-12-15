@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from '../../stylesModules/Login.module.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLoaderData } from 'react-router-dom'
 import { getRequestToken, createSessionWithLogin, getAccountId } from '../../api'
 import { useContext } from 'react';
 import { UserContext } from '../../store/userContext'
@@ -18,26 +18,25 @@ const Login = () => {
     const [usernameText, setUsernameText] = useState('');
     const [passwordText, setPasswordText] = useState('');
 
+    const loaderData = useLoaderData();
+
     useEffect(() => {
         if (user)
             nav('/user')
     }, [user])
 
-    const getToken = async () => {
-        const response = await getRequestToken();
-        if (response?.request_token) {
-            setRequestToken(response.request_token);
-        }
-        else {
-            setAlertMsg('Something went wrong... Please try again!')
-            setAlertButtons(true);
-            setIsAlert(true);
-        }
-    }
-
     useEffect(() => {
-        getToken();
-    }, []);
+        if (loaderData) {
+            if (loaderData?.request_token) {
+                setRequestToken(loaderData.request_token);
+            }
+            else {
+                setAlertMsg('Something went wrong... Please try again!')
+                setAlertButtons(true);
+                setIsAlert(true);
+            }
+        }
+    }, [loaderData]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -106,3 +105,12 @@ const Login = () => {
 }
 
 export default Login;
+
+
+export const loader = async () => {
+    if (!sessionStorage.getItem('user')) {
+        const response = await getRequestToken();
+        return response
+    }
+    return null
+}
