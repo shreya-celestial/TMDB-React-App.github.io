@@ -8,6 +8,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { UserContext } from '../store/userContext'
 import ErrorAlert from '../components/ErrorAlert'
+import { useMutation } from '@tanstack/react-query'
 
 const DetailPage = () => {
     const { genre, id } = useParams();
@@ -19,6 +20,19 @@ const DetailPage = () => {
     const [timeOut, setTimeOut] = useState(10);
     const [alertMsg, setAlertMsg] = useState('');
     const { user: sessionUser } = useContext(UserContext)
+
+    const { mutate } = useMutation({
+        mutationFn: addToWatchlist,
+        onSuccess: (response) => {
+            if (response.success) {
+                setWatchList(true)
+            } else {
+                setWatchList(false)
+                setAlertMsg('Unable to add to watchlist... Please try again!')
+                setIsAlert(true)
+            }
+        }
+    })
 
     const getRunTime = (time) => {
         let runtime = `${Math.trunc(time / (60))}hrs`;
@@ -78,15 +92,7 @@ const DetailPage = () => {
                 media_id: id,
                 watchlist: true
             }
-            const response = await addToWatchlist(body, user.id)
-            if (response?.success) {
-                setWatchList(true)
-            }
-            else {
-                setWatchList(false)
-                setAlertMsg('Unable to add to watchlist... Please try again!')
-                setIsAlert(true)
-            }
+            mutate(body, user.id)
         }
     }
 

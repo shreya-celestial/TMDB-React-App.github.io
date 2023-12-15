@@ -11,6 +11,7 @@ import Login from './components/Login/Login';
 import { UserContext } from './store/userContext';
 import User from './components/Login/User';
 import RootLayout from './RootLayout';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 const App = () => {
     const [sessionUser, setSessionUser] = useState(sessionStorage.getItem('user'))
@@ -34,10 +35,13 @@ const App = () => {
         }
     ])
 
+    const queryClient = new QueryClient();
+
     return (
-        <UserContext.Provider value={user}>
-            <RouterProvider router={router} />
-            {/* <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+            <UserContext.Provider value={user}>
+                <RouterProvider router={router} />
+                {/* <BrowserRouter>
                 <NavBar />
                 <div className="pages">
                     <Routes>
@@ -54,7 +58,8 @@ const App = () => {
                     </Routes>
                 </div>
             </BrowserRouter> */}
-        </UserContext.Provider>
+            </UserContext.Provider>
+        </QueryClientProvider>
     );
 }
 
