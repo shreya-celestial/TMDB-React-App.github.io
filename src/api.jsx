@@ -1,9 +1,11 @@
+const AUTH_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI';
+
 export const getTrendingPopularContents = async (url) => {
     const options = {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     try {
@@ -21,7 +23,7 @@ export const getClickedItem = async (id, genre) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/${genre}/${id}?language=en-US`;
@@ -40,7 +42,7 @@ export const searchItem = async (searchThis, page) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/search/movie?query=${searchThis}&language=en-US&page=${page}`;
@@ -59,7 +61,7 @@ export const getAllGenres = async () => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
@@ -78,7 +80,7 @@ export const getPopularMovies = async (page) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`;
@@ -97,7 +99,7 @@ export const getTopRatedMovies = async (page) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`;
@@ -116,7 +118,7 @@ export const getFilteredData = async (filterParams, page) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${filterParams.dd}&vote_average.gte=${filterParams.score[0]}&vote_average.lte=${filterParams.score[1]}&vote_count.gte=${filterParams.votes}&with_genres=${filterParams.genres}`;
@@ -135,7 +137,7 @@ export const getRequestToken = async () => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/authentication/token/new`;
@@ -155,7 +157,7 @@ export const createSessionWithLogin = async (body) => {
         headers: {
             accept: 'application/json',
             'content-type': 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         },
         body: JSON.stringify(body)
     };
@@ -171,7 +173,7 @@ export const createSessionWithLogin = async (body) => {
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+                Authorization: `Bearer ${AUTH_TOKEN}`
             },
             body: JSON.stringify(body)
         };
@@ -190,7 +192,7 @@ export const getAccountId = async (session_id) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/account?api_key=a7827348b8ef98b74e29888944bae6ec&session_id=${session_id}`;
@@ -209,7 +211,7 @@ export const getWatchlist = async (id, page, genre) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         }
     };
     const url = `https://api.themoviedb.org/3/account/${id}/watchlist/${genre}?language=en-US&page=${page}&sort_by=created_at.asc`;
@@ -229,7 +231,7 @@ export const addToWatchlist = async (body, accountId) => {
         headers: {
             accept: 'application/json',
             'content-type': 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNzgyNzM0OGI4ZWY5OGI3NGUyOTg4ODk0NGJhZTZlYyIsInN1YiI6IjY1NDMzZmVmZTFhZDc5MDBlYTU3OWM2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-87S7MvmbnW2pQX9XdN87KazRKzPDGRa_aZwO8BttGI'
+            Authorization: `Bearer ${AUTH_TOKEN}`
         },
         body: JSON.stringify(body)
     };

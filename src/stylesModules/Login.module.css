@@ -4,16 +4,6 @@
     margin: 17.5vh auto;
 }
 
-.form input {
-    width: 100%;
-    margin-bottom: 20px;
-    line-height: 1.5;
-    height: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #bebebe;
-    outline: none;
-}
 
 .form button {
     background-color: rgba(1,180,228,1);
@@ -22,4 +12,8 @@
     border: none;
     outline: none;
     border-radius: 5px;
+}
+
+.form button:hover {
+    background-color: rgb(140, 230, 255);
 }

@@ -7,6 +7,7 @@ import moment from "moment";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { UserContext } from '../store/userContext'
+import ErrorAlert from '../components/ErrorAlert'
 
 const DetailPage = () => {
     const { genre, id } = useParams();
@@ -14,6 +15,9 @@ const DetailPage = () => {
     const [disp, setDis] = useState('none');
     const [watchList, setWatchList] = useState(false);
     const nav = useNavigate();
+    const [isAlert, setIsAlert] = useState(false);
+    const [timeOut, setTimeOut] = useState(10);
+    const [alertMsg, setAlertMsg] = useState('');
     const { user: sessionUser } = useContext(UserContext)
 
     const getRunTime = (time) => {
@@ -80,13 +84,27 @@ const DetailPage = () => {
             }
             else {
                 setWatchList(false)
-                alert('Unable to add to watchlist... Please try again!')
+                setAlertMsg('Unable to add to watchlist... Please try again!')
+                setIsAlert(true)
             }
         }
     }
 
+    useEffect(() => {
+        let timeInt
+        if (isAlert) {
+            timeInt = setTimeout(() => {
+                setIsAlert(false)
+            }, timeOut * 1000)
+        }
+        return () => {
+            clearTimeout(timeInt)
+        }
+    }, [isAlert])
+
     return (
         <>
+            {isAlert && <ErrorAlert message={alertMsg} needButtons={false} timeOut={timeOut} />}
             {!data && <div className="notfound">
                 <h1>Loading...</h1>
             </div>}

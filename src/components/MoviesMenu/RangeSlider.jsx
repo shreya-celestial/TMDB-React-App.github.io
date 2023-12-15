@@ -2,7 +2,7 @@ import { styled, alpha, Box } from '@mui/system';
 import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 import PropTypes from 'prop-types';
 
-const grey = {
+const GREY = {
   50: '#F3F6F9',
   100: '#E5EAF2',
   200: '#DAE2ED',
@@ -30,7 +30,7 @@ const Slider = styled(BaseSlider)(
     &.${sliderClasses.disabled} { 
       pointer-events: none;
       cursor: default;
-      color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
+      color: ${theme.palette.mode === 'light' ? GREY[300] : GREY[600]};
       opacity: 0.5;
     }
   

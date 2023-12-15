@@ -4,11 +4,19 @@ import { useNavigate } from 'react-router-dom'
 import { getRequestToken, createSessionWithLogin, getAccountId } from '../../api'
 import { useContext } from 'react';
 import { UserContext } from '../../store/userContext'
+import ErrorAlert from '../ErrorAlert';
+import { TextField, Button, Typography } from '@mui/material';
 
 const Login = () => {
     const nav = useNavigate()
     const [requestToken, setRequestToken] = useState(null)
     const { user, setUser } = useContext(UserContext);
+    const [isAlert, setIsAlert] = useState(false);
+    const [alertButtons, setAlertButtons] = useState(null);
+    const [alertMsg, setAlertMsg] = useState('');
+    const [timeOut, setTimeOut] = useState(0);
+    const [usernameText, setUsernameText] = useState('');
+    const [passwordText, setPasswordText] = useState('');
 
     useEffect(() => {
         if (user)
@@ -21,8 +29,9 @@ const Login = () => {
             setRequestToken(response.request_token);
         }
         else {
-            alert('Something went wrong... Please try again!')
-            location.reload();
+            setAlertMsg('Something went wrong... Please try again!')
+            setAlertButtons(true);
+            setIsAlert(true);
         }
     }
 
@@ -33,8 +42,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const body = {
-            username: e.target.elements.username.value,
-            password: e.target.elements.password.value,
+            username: usernameText,
+            password: passwordText,
             request_token: requestToken
         };
         const data = await createSessionWithLogin(body);
@@ -47,19 +56,52 @@ const Login = () => {
                 return
             }
         }
-        alert('Authentication Failed! Re-enter your id and password.');
-        location.reload()
+        setAlertMsg('Authentication Failed! Re-enter your id and password.')
+        setAlertButtons(false);
+        setTimeOut(10)
+        setIsAlert(true);
     }
 
+    useEffect(() => {
+        let timerInt
+        if (!alertButtons) {
+            timerInt = setTimeout(() => {
+                setIsAlert(false)
+                setAlertButtons(null)
+            }, timeOut * 1000)
+        }
+        return () => {
+            clearTimeout(timerInt)
+        }
+    }, [alertButtons])
+
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <h2>Login to your account</h2>
-            <label>Username</label>
-            <input type="text" name='username' />
-            <label>Password</label>
-            <input type="password" name='password' />
-            <button>Login</button>
-        </form>
+        <>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <Typography variant='h4'>Login to your account</Typography >
+                <TextField
+                    label="Username"
+                    variant="outlined"
+                    disabled={alertButtons}
+                    value={usernameText}
+                    onChange={(e) => setUsernameText(e.target.value)}
+                    sx={{ width: '100%', margin: '10px 0' }}
+                />
+                <TextField
+                    label="Password"
+                    variant="outlined"
+                    disabled={alertButtons}
+                    value={passwordText}
+                    type='password'
+                    onChange={(e) => setPasswordText(e.target.value)}
+                    sx={{ width: '100%', margin: '10px 0' }}
+                />
+                <Button type='submit' disabled={alertButtons} sx={{
+                    margin: '5px 0'
+                }}>Login</Button>
+            </form>
+            {isAlert && <ErrorAlert message={alertMsg} needButtons={alertButtons} timeOut={timeOut} />}
+        </>
     );
 }
 
