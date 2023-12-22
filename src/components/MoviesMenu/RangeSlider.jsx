@@ -3,20 +3,20 @@ import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 import PropTypes from 'prop-types';
 
 const GREY = {
-  50: '#F3F6F9',
-  100: '#E5EAF2',
-  200: '#DAE2ED',
-  300: '#C7D0DD',
-  400: '#B0B8C4',
-  500: '#9DA8B7',
-  600: '#6B7A90',
-  700: '#434D5B',
-  800: '#303740',
-  900: '#1C2025',
+	50: '#F3F6F9',
+	100: '#E5EAF2',
+	200: '#DAE2ED',
+	300: '#C7D0DD',
+	400: '#B0B8C4',
+	500: '#9DA8B7',
+	600: '#6B7A90',
+	700: '#434D5B',
+	800: '#303740',
+	900: '#1C2025',
 };
 
 const Slider = styled(BaseSlider)(
-  ({ theme }) => `
+	({ theme }) => `
     color: ${theme.palette.mode === 'light' ? 'rgba(1,180,228,1)' : 'rgba(1,180,228,1)'};
     height: 6px;
     width: 100%;
@@ -65,22 +65,22 @@ const Slider = styled(BaseSlider)(
   
       &:hover{
         box-shadow: 0 0 0 4px ${alpha(
-    theme.palette.mode === 'light' ? 'rgba(1,180,228,1)' : 'rgba(1,180,228,1)',
-    0.3
-  )};
+		theme.palette.mode === 'light' ? 'rgba(1,180,228,1)' : 'rgba(1,180,228,1)',
+		0.3
+	)};
       }
       
       &.${sliderClasses.focusVisible} {
         box-shadow: 0 0 0 4px ${theme.palette.mode === 'dark' ? 'rgba(1,180,228,1)' : 'rgba(1,180,228,0.2)'
-    };
+		};
         outline: none;
       }
   
       &.${sliderClasses.active} {
         box-shadow: 0 0 0 5px ${alpha(
-      theme.palette.mode === 'light' ? 'rgba(1,180,228,1)' : 'rgba(1,180,228,1)',
-      0.5
-    )};
+			theme.palette.mode === 'light' ? 'rgba(1,180,228,1)' : 'rgba(1,180,228,1)',
+			0.5
+		)};
         outline: none;
       }
     }
@@ -114,20 +114,20 @@ const Slider = styled(BaseSlider)(
 );
 
 function SliderValueLabel({ children }) {
-  return <span className="valueLabel">{children}</span>;
+	return <span className="valueLabel">{children}</span>;
 }
 
 SliderValueLabel.propTypes = {
-  children: PropTypes.number,
+	children: PropTypes.number,
 };
 
 
 const RangeSlider = ({ ...props }) => {
-  return (
-    <Box sx={{ padding: '0 8px' }}>
-      <Slider {...props} slots={{ valueLabel: SliderValueLabel }} />
-    </Box>
-  );
+	return (
+		<Box sx={{ padding: '0 8px' }}>
+			<Slider {...props} slots={{ valueLabel: SliderValueLabel }} />
+		</Box>
+	);
 }
 
 export default RangeSlider;
